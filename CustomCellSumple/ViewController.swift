@@ -6,15 +6,30 @@
 //
 
 import UIKit
-import Foundation
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITableViewDelegate {
+    
+    @IBOutlet weak var tableview: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        tableview.delegate = self
+        //tableview.dataSource = self
+        tableview.register(TableViewCell.nib(), forCellReuseIdentifier: TableViewCell.id)
     }
 
 
+}
+
+extension ViewController {
+    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return
+//    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableview.dequeueReusableCell(withIdentifier: TableViewCell.id, for: indexPath) as! TableViewCell
+        return cell
+    }
 }
 
